@@ -294,13 +294,10 @@ List RIDC2_MH_hier_cpp(List Data,int R,
 {
  int nind =Data.size();
  //List obs = Data[0];
- int nobs =20; //Data[0][0].length();
- int nalt = 2;//Data[0][0]["X"].nrow();
- int nvar = 2;//Data[0][0]["X"].ncol();
- //int ncomplevels = 5;//rho.n_elem;
- int nstates = 5;//21;//ncomplevels^(nalt-1);  // number of all possible states
- //IntegerVector simp_idx = {1,2}; //c(1:nvar)[-comp_idx] // index of simple attributes
-  
+ int nobs = as<List>(Data[0]).size();
+ int nalt = as<mat>(as<List>(as<List>(Data[0])[0])["X"]).n_rows;
+ int nvar = as<mat>(as<List>(as<List>(Data[0])[0])["X"]).n_cols-1;
+ int nstates = states.n_cols;
   //simp_idx = simp_idx - 1;   //adopt cpp indexing
   //comp_idx = comp_idx - 1;   //adopt cpp indexing
   
